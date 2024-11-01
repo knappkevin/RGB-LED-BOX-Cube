@@ -1,4 +1,6 @@
 # RGB LED Cube Matrix
+![](docs/media/flat_angle.jpg)
+![](docs/media/side_angle.jpg)
 
 ## Overview
 This project creates a handheld six-sided LED cube featuring animations such as Conway's Game of Life.  
@@ -8,14 +10,15 @@ The type and dimension of the LED panels are relatively flexible, depending on e
 ## Features
 - Bluetooth Controls
 - Animations crossing the edges between cube faces
-  - Colorful worms that traverse the cube
-  - Conway's Game of Life: Race War Edition
+  - Colorful worms that traverse the cube  
+    ![](docs/media/worms.gif)
+  - Conway's Game of Life: Race War Edition  
+    ![](docs/media/life.gif)
 
 ## Future Plans
 - [ ] Support for gravity-oriented animations through an accelerometer
 - [ ] Timed animation slideshows
 - [ ] Mobile app
-- [ ] Images and demonstration
 - [ ] Construction and wiring documentation
 
 ## Hardware Overview
