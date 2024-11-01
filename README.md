@@ -1,6 +1,6 @@
 # RGB LED Cube Matrix
-![](docs/media/flat_angle.jpg)
-![](docs/media/side_angle.jpg)
+![](docs/media/cube_front.jpg)
+![](docs/media/cube_side.jpg)
 
 ## Overview
 This project creates a handheld six-sided LED cube featuring animations such as Conway's Game of Life.  
