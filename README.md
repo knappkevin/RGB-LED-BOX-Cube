@@ -14,6 +14,7 @@ The type and dimension of the LED panels are relatively flexible, depending on e
     ![](docs/media/worms.gif)
   - Conway's Game of Life: Race War Edition  
     ![](docs/media/life.gif)
+  - Classic Snake Game
 
 ## Future Plans
 - [ ] Support for gravity-oriented animations through an accelerometer
@@ -24,7 +25,7 @@ The type and dimension of the LED panels are relatively flexible, depending on e
 ## Hardware Overview
 - QTPy ESP32-S3
 - 6x WS2812B flexible strip 16x16 LED matrices
-- 5V Portable charger
+- 5V portable charger
 - USB-C cable that supports data transfer
 
 ## Files and Folders

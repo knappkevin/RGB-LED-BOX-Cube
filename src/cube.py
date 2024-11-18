@@ -179,7 +179,19 @@ class LEDCube:
         self.pixels_sides.deinit()
         self.pixels_bottom.deinit()
 
-
+    def random_face(self):
+        return random.choice([self.TOP, self.BOTTOM, self.SIDE_A, self.SIDE_B, self.SIDE_C, self.SIDE_D])
+    
+    def random_face_xy(self):
+        x = random.randint(0, self.face_width - 1)
+        y = random.randint(0, self.face_width - 1)
+        return x, y
+    
+    def random_cube_xy(self):
+        face = self.random_face()
+        x, y = self.random_face_xy()
+        return self.get_flat_cube_xy(face, x, y)
+    
     def random_color(self):
         colors = [RED, ORANGE, AMBER, YELLOW, GOLD, GREEN, JADE, TEAL, AQUA, CYAN, BLUE, PURPLE, MAGENTA, PINK, WHITE]
         return random.choice(colors)

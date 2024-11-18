@@ -20,7 +20,7 @@ class Life:
             flatCubeArr[x][y] = color
 
 
-    def life_rule_on_pixel(self, new, x, y, old):
+    def life_rule_on_cell(self, new, x, y, old):
         # Process neighbors and count races
         neighbor_count = 0
         races = {}
@@ -61,14 +61,15 @@ class Life:
 
     def animate(self, ble_intrrupt):
         self.cube.function_every_pixel(self.populate_pixel, self.flatCubeArr1, self.pop_density)
+        self.cube.show_pixels()
 
         while not ble_intrrupt.in_waiting:
-            self.cube.function_every_pixel(self.life_rule_on_pixel, self.flatCubeArr2, self.flatCubeArr1)
+            self.cube.function_every_pixel(self.life_rule_on_cell, self.flatCubeArr2, self.flatCubeArr1)
             self.cube.flat_cube_arr = self.flatCubeArr2
             self.cube.show_pixels()
             # time.sleep(self.delay)
 
-            self.cube.function_every_pixel(self.life_rule_on_pixel, self.flatCubeArr1, self.flatCubeArr2)
+            self.cube.function_every_pixel(self.life_rule_on_cell, self.flatCubeArr1, self.flatCubeArr2)
             self.cube.flat_cube_arr = self.flatCubeArr1
             self.cube.show_pixels()
             # time.sleep(self.delay)

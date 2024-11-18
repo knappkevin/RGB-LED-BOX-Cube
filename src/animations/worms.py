@@ -74,12 +74,8 @@ class Worms:
         for _ in range(num_worms):
             color = cube.random_color()
             dir = random.choice([(0, 1), (0, -1), (1, 0), (-1, 0)])
-            x = random.randint(0, cube.face_width - 1)
-            y = random.randint(0, cube.face_width - 1)
-            face = random.choice([cube.TOP, cube.BOTTOM, cube.SIDE_A, cube.SIDE_B, cube.SIDE_C, cube.SIDE_D])
-            flatx, flaty = cube.get_flat_cube_xy(face, x, y)
-            
-            self.worms.append(Worm(cube, flatx, flaty, dir, worm_len, color))
+            x, y = cube.random_cube_xy()
+            self.worms.append(Worm(cube, x, y, dir, worm_len, color))
 
     def get_name(self):
         return "worms"
