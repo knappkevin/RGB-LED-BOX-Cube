@@ -56,20 +56,24 @@ class Life:
             # Survival: Keep the current state
             new[x][y] = current_val
 
+
     def get_name(self):
         return "life"
 
     def animate(self, ble_intrrupt):
         self.cube.function_every_pixel(self.populate_pixel, self.flatCubeArr1, self.pop_density)
+        self.cube.set_pixels()
         self.cube.show_pixels()
 
         while not ble_intrrupt.in_waiting:
             self.cube.function_every_pixel(self.life_rule_on_cell, self.flatCubeArr2, self.flatCubeArr1)
             self.cube.flat_cube_arr = self.flatCubeArr2
+            self.cube.set_pixels()
             self.cube.show_pixels()
             # time.sleep(self.delay)
 
             self.cube.function_every_pixel(self.life_rule_on_cell, self.flatCubeArr1, self.flatCubeArr2)
             self.cube.flat_cube_arr = self.flatCubeArr1
+            self.cube.set_pixels()
             self.cube.show_pixels()
             # time.sleep(self.delay)

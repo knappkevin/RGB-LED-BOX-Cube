@@ -15,6 +15,7 @@ The type and dimension of the LED panels are relatively flexible, depending on e
   - Conway's Game of Life: Race War Edition  
     ![](docs/media/life.gif)
   - Classic Snake Game
+  - More at [docs/media/](docs/media/)
 
 ## Future Plans
 - [ ] Support for gravity-oriented animations through an accelerometer

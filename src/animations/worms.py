@@ -32,13 +32,13 @@ class Worm:
 
 
     def update(self):
-        self.cube.set_flat_cube_pixel(self.head.x, self.head.y, self.head.color)
+        self.cube.set_pixel(self.head.x, self.head.y, self.head.color)
         # tail should go black or leave another worms color alone
         existing_color = self.cube.flat_cube_arr[self.tail.x][self.tail.y]
         if existing_color == self.head.color:
-            self.cube.set_flat_cube_pixel(self.tail.x, self.tail.y, 0)
+            self.cube.set_pixel(self.tail.x, self.tail.y, 0)
         else:
-            self.cube.set_flat_cube_pixel(self.tail.x, self.tail.y, existing_color)
+            self.cube.set_pixel(self.tail.x, self.tail.y, existing_color)
 
         if random.random() < 0.25:
             left_right = random.choice([-1, 1])

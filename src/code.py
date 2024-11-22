@@ -22,8 +22,8 @@ cube = LEDCube(face_width, board.A0, board.A1, board.A2, brightness=0.03)
 
 # Initialize animations
 test = Test(cube)
-worms = Worms(cube, num_worms=36, worm_len=face_width//2, delay=0)
-life = Life(cube, pop_density=0.1, delay=0)
+worms = Worms(cube, num_worms=42, worm_len=face_width//2, delay=0)
+life = Life(cube, pop_density=0.2, delay=0)
 snake = Snake(cube, delay=0)
 
 # Advertise bluetooth low energy uart service
@@ -33,5 +33,5 @@ advertisement = ProvideServicesAdvertisement(uart)
 ble.start_advertising(advertisement)
 
 # Handle animations and user requests
-controller = AnimationController(snake, test, worms, life)
+controller = AnimationController(worms, snake, life, test)
 controller.run(cube, uart)

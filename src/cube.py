@@ -154,9 +154,34 @@ class LEDCube:
             strip_index = (y * width) + width - x - 1
         return strip_index
 
+    # used for set_pixel() to determine which pixel strip needs to be updated
+    def xy_which_face(self, x, y):
+        if x >= 0 and x <= self.face_width + 1:
+            return self.TOP
+        elif x >= self.face_width + 2 and x <= 2*self.face_width + 3:
+            return self.SIDE_A
+        elif x >= 2*self.face_width + 4 and x <= 3*self.face_width + 5:
+            return self.BOTTOM
+
+    # sets the pixel value on the flat_cube_arr and the corresponding pixel strip
+    def set_pixel(self, x, y, color):
+        self.set_flat_cube_pixel(x, y, color) # for consistency?
+        # face = self.xy_which_face(x, y)
+        face_x = x % (self.face_width + 2) - 1
+        face_y = y - 1
+        strip_index = self.face_xy_to_strip_index(face_x, face_y)
+
+        if x >= 0 and x <= self.face_width + 1:
+            self.pixels_top[strip_index] = color
+        elif x >= self.face_width + 2 and x <= 2*self.face_width + 3:
+            self.pixels_sides[strip_index] = color
+        elif x >= 2*self.face_width + 4 and x <= 3*self.face_width + 5:
+            self.pixels_bottom[strip_index] = color
+
 
     # update every pixel color on the top, sides, and bottom strips based on flat_cube_arr then show
-    def show_pixels(self):
+    # def show_pixels(self):
+    def set_pixels(self):
         for x in range(self.face_width):
             for y in range(self.face_width):
                 flatCubeX, flatCubeY = self.get_flat_cube_xy(self.TOP, x, y)
@@ -169,6 +194,8 @@ class LEDCube:
                 flatCubeX, flatCubeY = self.get_flat_cube_xy(self.SIDE_A, x, y)
                 self.pixels_sides[self.face_xy_to_strip_index(x, y)] = self.flat_cube_arr[flatCubeX][flatCubeY]
 
+
+    def show_pixels(self):
         self.pixels_top.show()
         self.pixels_sides.show()
         self.pixels_bottom.show()

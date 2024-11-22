@@ -30,7 +30,7 @@ class Test:
         self.lines.append(Line(x6, y6, (1, 0)))
 
     def update_line(self, line):
-        self.cube.set_flat_cube_pixel(line.x, line.y, self.cube.random_color())
+        self.cube.set_pixel(line.x, line.y, self.cube.random_color())
         line.x += line.dir[0]
         line.y += line.dir[1]
         line.x, line.y, line.dir = self.cube.confirm_flat_xy(line.x, line.y, line.dir)

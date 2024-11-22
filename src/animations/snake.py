@@ -1,4 +1,4 @@
-from adafruit_led_animation.color import RED, GREEN, JADE
+from adafruit_led_animation.color import RED, GREEN
 from collections import deque
 import time, random
 
@@ -69,17 +69,17 @@ class Snake:
 
         # Update the position of the head
         if not self.ate_self:
-            self.cube.set_flat_cube_pixel(self.head.x, self.head.y, self.head.color)
+            self.cube.set_pixel(self.head.x, self.head.y, self.head.color)
 
         # Clear the tail if the snake hasn't just eaten
         if not self.ate_apple:
-            self.cube.set_flat_cube_pixel(self.tail.x, self.tail.y, self.tail.color)
+            self.cube.set_pixel(self.tail.x, self.tail.y, self.tail.color)
 
 
     def spawn_apple(self, flat_cube_arr, x, y, spawn_chance):
         # color = self.cube.random_color()
         if random.random() < spawn_chance and flat_cube_arr[x][y] == 0:
-            flat_cube_arr[x][y] = RED
+            self.cube.set_pixel(x, y, RED)
 
 
     def get_name(self):

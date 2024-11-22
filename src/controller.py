@@ -14,7 +14,7 @@ class AnimationController:
                 data = uart.readline().decode('utf-8').strip()
 
                 if data in self.animations:
-                    clear_pixel = lambda arr, x, y: cube.set_flat_cube_pixel(x, y, 0)
+                    clear_pixel = lambda arr, x, y: cube.set_pixel(x, y, 0)
                     cube.function_every_pixel(clear_pixel, cube.flat_cube_arr)
                     self.animation = self.animations[data]
                 else:

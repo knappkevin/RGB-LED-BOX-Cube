@@ -81,9 +81,11 @@ class FastLife:
 
     def animate(self, ble_intrrupt):
         self.cube.function_every_pixel(self.populate_pixel, self.cube.flat_cube_arr, self.pop_density)
+        self.cube.set_pixels()
         self.cube.show_pixels()
 
         while not ble_intrrupt.in_waiting:
             self.update_generation()
+            self.cube.set_pixels()
             self.cube.show_pixels()
             time.sleep(self.delay)
