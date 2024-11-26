@@ -49,48 +49,47 @@ class LEDCube:
 
         # top face 
         flat_cube_arr.append([-1] +
-                           [EdgeMapsTo(sideFaceLeftEdgeX, 3*face_width - y, (1, 0)) for y in range(face_width)] +
-                           [-1])
+                             [EdgeMapsTo(sideFaceLeftEdgeX, 3*face_width - y, (1, 0)) for y in range(face_width)] +
+                             [-1])
         flat_cube_arr.extend([EdgeMapsTo(sideFaceLeftEdgeX, 3*face_width + x + 1, (1, 0))] +
-                            [0 for y in range(face_width)] +
-                            [EdgeMapsTo(sideFaceLeftEdgeX, 2*face_width - x, (1, 0))]
-                            for x in range(face_width)) 
+                             [0 for y in range(face_width)] +
+                             [EdgeMapsTo(sideFaceLeftEdgeX, 2*face_width - x, (1, 0))]
+                             for x in range(face_width)) 
         flat_cube_arr.append([-1] +
-                           [EdgeMapsTo(sideFaceLeftEdgeX, y + 1, (1,0)) for y in range(face_width)] +
-                           [-1])
+                             [EdgeMapsTo(sideFaceLeftEdgeX, y + 1, (1,0)) for y in range(face_width)] +
+                             [-1])
 
         # side faces
         flat_cube_arr.append([-1] +
-                           [EdgeMapsTo(topFaceRightEdgeX, y + 1, (-1, 0)) for y in range(face_width)] +
-                           [EdgeMapsTo(topFaceRightEdgeX - y, face_width, (0, -1)) for y in range(face_width)] +
-                           [EdgeMapsTo(topFaceLeftEdgeX, face_width - y, (1, 0)) for y in range(face_width)] +
-                           [EdgeMapsTo(topFaceLeftEdgeX + y, 1, (0, 1)) for y in range(face_width)] +
-                           [-1])
+                             [EdgeMapsTo(topFaceRightEdgeX, y + 1, (-1, 0)) for y in range(face_width)] +
+                             [EdgeMapsTo(topFaceRightEdgeX - y, face_width, (0, -1)) for y in range(face_width)] +
+                             [EdgeMapsTo(topFaceLeftEdgeX, face_width - y, (1, 0)) for y in range(face_width)] +
+                             [EdgeMapsTo(topFaceLeftEdgeX + y, 1, (0, 1)) for y in range(face_width)] +
+                             [-1])
         flat_cube_arr.extend([EdgeMapsTo(sideFaceLeftEdgeX + x, face_width*4, (0, -1))] +
-                            [0 for y in range(face_width*4)] +
-                            [EdgeMapsTo(sideFaceLeftEdgeX + x, 1, (0, 1))]
-                            for x in range(face_width))
+                             [0 for y in range(face_width*4)] +
+                             [EdgeMapsTo(sideFaceLeftEdgeX + x, 1, (0, 1))]
+                             for x in range(face_width))
         flat_cube_arr.append([-1] +
-                           [EdgeMapsTo(bottomFaceLeftEdgeX, y + 1, (1, 0)) for y in range(face_width)] +
-                           [EdgeMapsTo(bottomFaceLeftEdgeX + y, face_width, (0, -1)) for y in range(face_width)] +
-                           [EdgeMapsTo(bottomFaceRightEdgeX, face_width - y, (-1, 0)) for y in range(face_width)] +
-                           [EdgeMapsTo(bottomFaceRightEdgeX - y, 1, (0, 1)) for y in range(face_width)] +
-                           [-1])
+                             [EdgeMapsTo(bottomFaceLeftEdgeX, y + 1, (1, 0)) for y in range(face_width)] +
+                             [EdgeMapsTo(bottomFaceLeftEdgeX + y, face_width, (0, -1)) for y in range(face_width)] +
+                             [EdgeMapsTo(bottomFaceRightEdgeX, face_width - y, (-1, 0)) for y in range(face_width)] +
+                             [EdgeMapsTo(bottomFaceRightEdgeX - y, 1, (0, 1)) for y in range(face_width)] +
+                             [-1])
 
         # bottom face
         flat_cube_arr.append([-1] +
-                           [EdgeMapsTo(sideFaceRightEdgeX, y + 1, (-1, 0)) for y in range(face_width)] +
-                           [-1])
+                             [EdgeMapsTo(sideFaceRightEdgeX, y + 1, (-1, 0)) for y in range(face_width)] +
+                             [-1])
         flat_cube_arr.extend([EdgeMapsTo(sideFaceRightEdgeX, 4 * face_width - x, (-1, 0))] +
-                            [0 for _ in range(face_width)] +
-                            [EdgeMapsTo(sideFaceRightEdgeX, face_width + x + 1, (-1, 0))]
-                            for x in range(face_width))
+                             [0 for _ in range(face_width)] +
+                             [EdgeMapsTo(sideFaceRightEdgeX, face_width + x + 1, (-1, 0))]
+                             for x in range(face_width))
         flat_cube_arr.append([-1] +
-                           [EdgeMapsTo(sideFaceRightEdgeX, 3*face_width - y, (-1, 0)) for y in range(face_width)] +
-                           [-1])
+                             [EdgeMapsTo(sideFaceRightEdgeX, 3*face_width - y, (-1, 0)) for y in range(face_width)] +
+                             [-1])
         return flat_cube_arr
-
-
+ 
     def get_flat_cube_xy(self, face, x, y):
         if face == self.TOP:
             return x + 1, y + 1

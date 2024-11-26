@@ -10,7 +10,7 @@ The type and dimension of the LED panels are relatively flexible, depending on e
 ## Features
 - Bluetooth Controls
 - Animations crossing the edges between cube faces
-  - Colorful worms  
+  - Worms  
     ![](docs/media/worms.gif)
   - Conway's Game of Life: Race War Edition  
     ![](docs/media/life.gif)
