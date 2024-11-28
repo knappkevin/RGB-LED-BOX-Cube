@@ -1,5 +1,7 @@
 from collections import deque
 import time, random
+from colors import Colors
+
 
 class Cell:
     def __init__(self, x, y, dir, color):
@@ -7,7 +9,6 @@ class Cell:
         self.y = y
         self.dir = dir
         self.color = color
-
 
 class Worm:
     def __init__(self, cube, x, y, dir, length, color):
@@ -72,7 +73,7 @@ class Worms:
         self.worms = []
 
         for _ in range(num_worms):
-            color = cube.random_color()
+            color = Colors.random_color()
             dir = random.choice([(0, 1), (0, -1), (1, 0), (-1, 0)])
             x, y = cube.random_cube_xy()
             self.worms.append(Worm(cube, x, y, dir, worm_len, color))

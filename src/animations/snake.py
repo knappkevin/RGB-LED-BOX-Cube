@@ -13,20 +13,31 @@ class Cell:
 class Snake:
     def __init__(self, cube, length = 1, delay = 0):
         self.cube = cube
+        self.length = length
         self.delay = delay
-        self.dir_queue = []
         self.ate_apple = False
         self.ate_self = False
+        
+        self.dir_queue = []
+        self.head = None
+        self.tail = None
+        self.initialize_snake()
+
+    # Initialize the snake with a head and tail at a random position
+    def initialize_snake(self):
+        self.ate_apple = False
+        self.ate_self = False
+        self.dir_queue = []
 
         x, y = self.cube.random_cube_xy()
         dir = random.choice([(0, 1), (0, -1), (1, 0), (-1, 0)])
         self.head = Cell(x, y, dir, color = GREEN)
 
-        for cell in range(length):
+        for cell in range(self.length):
             x -= dir[0]
             y -= dir[1]
 
-            edgex, edgey, edge_dir = cube.confirm_flat_xy(x, y, dir)
+            edgex, edgey, edge_dir = self.cube.confirm_flat_xy(x, y, dir)
             if edgex != x or edgey != y:
                 x, y = edgex, edgey
                 dir = -1 * edge_dir[0], -1 * edge_dir[1]
@@ -52,7 +63,7 @@ class Snake:
 
         # Update the tail only if the snake hasn't just eaten
         if not self.ate_apple:
-            tail.dir = self.dir_queue.pop(0)  # Get the next direction from the queue
+            tail.dir = self.dir_queue.pop(0) # Get the next direction from the queue
             tail.x += tail.dir[0]
             tail.y += tail.dir[1]
         
@@ -89,10 +100,12 @@ class Snake:
         apple_spawn_chance = 0.1
         self.cube.function_every_pixel(self.spawn_apple, self.cube.flat_cube_arr, apple_spawn_chance)
 
+        self.initialize_snake()
+
         while not ble_intrrupt.in_waiting:
             #spawn a single apple
             x, y = self.cube.random_cube_xy()
-            self.spawn_apple(self.cube.flat_cube_arr, x, y, spawn_chance = apple_spawn_chance*2)
+            self.spawn_apple(self.cube.flat_cube_arr, x, y, spawn_chance = apple_spawn_chance)
             
             self.update() #update snake position and graphics
             self.cube.show_pixels()

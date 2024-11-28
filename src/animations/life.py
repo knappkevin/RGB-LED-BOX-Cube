@@ -1,4 +1,5 @@
 import random, time
+from colors import Colors
 
 class Life:
     def __init__(self, cube, pop_density, delay):
@@ -15,7 +16,7 @@ class Life:
 
 
     def populate_pixel(self, flatCubeArr, x, y, pop_density):
-        color = self.cube.random_color()
+        color = Colors.random_color()
         if random.random() < pop_density:
             flatCubeArr[x][y] = color
 

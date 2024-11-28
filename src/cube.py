@@ -1,4 +1,3 @@
-from adafruit_led_animation.color import RED, ORANGE, AMBER, YELLOW, GOLD, GREEN, JADE, TEAL, AQUA, CYAN, BLUE, PURPLE, MAGENTA, PINK, WHITE
 import neopixel
 import random
 
@@ -17,7 +16,7 @@ Cube object that represents a 3D cube with 6 faces populated by LEDs
 Assumes that 3 pins are used and the second pin is the 4 side led panels chained together
 """
 class LEDCube:
-    def __init__(self, face_width, top_pin, side_pin, bottom_pin, brightness=0.1):
+    def __init__(self, face_width, top_pin, side_pin, bottom_pin, brightness=0.5):
         self.TOP = 0
         self.SIDE_A = 1
         self.SIDE_B = 2
@@ -89,7 +88,8 @@ class LEDCube:
                              [EdgeMapsTo(sideFaceRightEdgeX, 3*face_width - y, (-1, 0)) for y in range(face_width)] +
                              [-1])
         return flat_cube_arr
- 
+
+
     def get_flat_cube_xy(self, face, x, y):
         if face == self.TOP:
             return x + 1, y + 1
@@ -193,6 +193,10 @@ class LEDCube:
                 flatCubeX, flatCubeY = self.get_flat_cube_xy(self.SIDE_A, x, y)
                 self.pixels_sides[self.face_xy_to_strip_index(x, y)] = self.flat_cube_arr[flatCubeX][flatCubeY]
 
+    def fill_pixels(self, color):
+        self.pixels_top.fill(color)
+        self.pixels_sides.fill(color)
+        self.pixels_bottom.fill(color)
 
     def show_pixels(self):
         self.pixels_top.show()
@@ -218,6 +222,3 @@ class LEDCube:
         x, y = self.random_face_xy()
         return self.get_flat_cube_xy(face, x, y)
     
-    def random_color(self):
-        colors = [RED, ORANGE, AMBER, YELLOW, GOLD, GREEN, JADE, TEAL, AQUA, CYAN, BLUE, PURPLE, MAGENTA, PINK, WHITE]
-        return random.choice(colors)

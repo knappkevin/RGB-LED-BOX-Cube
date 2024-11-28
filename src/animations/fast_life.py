@@ -1,4 +1,5 @@
 import random, time
+from colors import Colors
 
 '''
 variation of the life animation that is optimized for speed but suffers on memory
@@ -16,7 +17,7 @@ class FastLife:
 
 
     def populate_pixel(self, flatCubeArr, x, y, pop_density):
-        color = self.cube.random_color()
+        color = Colors.random_color()
         if random.random() < pop_density:
             flatCubeArr[x][y] = color
             self.live_cells.add((x, y))

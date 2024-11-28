@@ -16,6 +16,7 @@ class AnimationController:
                 if data in self.animations:
                     clear_pixel = lambda arr, x, y: cube.set_pixel(x, y, 0)
                     cube.function_every_pixel(clear_pixel, cube.flat_cube_arr)
+                    cube.fill_pixels(0)
                     self.animation = self.animations[data]
                 else:
                     self.write_line(uart, 'Available animations:')
