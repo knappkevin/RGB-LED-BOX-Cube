@@ -1,46 +1,35 @@
-import random, time
-from colors import Colors
+from adafruit_led_animation.color import RED, GREEN, TEAL, AQUA, CYAN, BLUE, PURPLE, MAGENTA
 
-class Line:
-    def __init__(self, x, y, dir):
-        self.x = x
-        self.y = y
-        self.dir = dir
-
+# for all faces on each led strip, identify the first pixels with green and the last pixels with red, otherwise blue
 class Test:
     def __init__(self, cube):
         self.cube = cube
-        qrtpt = cube.face_width // 4
-        thirdqrtpt = 3 * qrtpt
+        self.face_num_leds = cube.face_width * cube.face_width
+        self.pixels_top = self.cube.pixels_top
+        self.pixels_bottom = self.cube.pixels_bottom
+        self.pixels_sides = self.cube.pixels_sides
 
-        x1, y1 = cube.get_flat_cube_xy(cube.TOP, qrtpt, qrtpt)
-        x2, y2 = cube.get_flat_cube_xy(cube.SIDE_A, qrtpt, qrtpt)
-        x3, y3 = cube.get_flat_cube_xy(cube.SIDE_D, qrtpt, qrtpt)
 
-        self.lines = []
-        self.lines.append(Line(x1, y1, (1, 0)))
-        self.lines.append(Line(x2, y2, (0, -1)))
-        self.lines.append(Line(x3, y3, (-1, 0)))
+    def identify_pixels(self, strip, faces):
+        strip.fill(BLUE)
+        for face in range(faces):
 
-        x4, y4 = cube.get_flat_cube_xy(cube.TOP, thirdqrtpt, thirdqrtpt)
-        x5, y5 = cube.get_flat_cube_xy(cube.SIDE_A, thirdqrtpt, thirdqrtpt)
-        x6, y6 = cube.get_flat_cube_xy(cube.SIDE_D, thirdqrtpt, thirdqrtpt)
+            start = face * self.face_num_leds
+            strip[start] = GREEN
+            strip[start + 1] = GREEN
 
-        self.lines.append(Line(x4, y4, (-1, 0)))
-        self.lines.append(Line(x5, y5, (0, 1)))
-        self.lines.append(Line(x6, y6, (1, 0)))
+            end = (face+1) * self.face_num_leds - 1
+            strip[end] = RED
+            strip[end - 1] = RED
 
-    def update_line(self, line):
-        self.cube.set_pixel(line.x, line.y, Colors.random_color())
-        line.x += line.dir[0]
-        line.y += line.dir[1]
-        line.x, line.y, line.dir = self.cube.confirm_flat_xy(line.x, line.y, line.dir)
 
     def get_name(self):
         return "test"
 
     def animate(self, ble_intrrupt):
-        while not ble_intrrupt.in_waiting:            
-            for line in self.lines:
-                self.update_line(line)
+        while not ble_intrrupt.in_waiting:
+
+            self.identify_pixels(self.pixels_top, 1)
+            self.identify_pixels(self.pixels_sides, 4)
+            self.identify_pixels(self.pixels_bottom, 1)
             self.cube.show_pixels()

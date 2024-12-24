@@ -1,17 +1,16 @@
 # RGB LED Cube Matrix
-![](docs/media/cube_front.jpg)
-![](docs/media/cube_side.jpg)
+![](docs/media/cube16_cutout.png)
+![](docs/media/cube8_cutout.png)
 
 ## Overview
 This project creates a handheld six-sided LED cube featuring animations such as Conway's Game of Life.  
 It runs CircuitPython and uses the Adafruit NeoPixel library for controlling the LEDs.  
-The type and dimension of the LED panels are relatively flexible, depending on electrical and computational power considerations.
 
 ## Features
-- Bluetooth Controls
-- Animations crossing the edges between cube faces
-  - RGB Wave  
-    ![](docs/media/rgb_wave.gif)
+- BLE Bluetooth Controls
+- Cube traversing animations
+  - RGB patterns  
+    ![](docs/media/rgb_fleas.gif)
   - Worms  
     ![](docs/media/worms.gif)
   - Conway's Game of Life: Race War Edition  
@@ -27,17 +26,19 @@ The type and dimension of the LED panels are relatively flexible, depending on e
 - [ ] Construction and wiring documentation
 
 ## Hardware Overview
-- QTPy ESP32-S3
-- 6x WS2812B flexible strip 16x16 LED matrices
-- 5V portable charger
-- USB-C cable that supports data transfer
+- ESP32-S3 or microcontroller that supports CircuitPython and BlueTooth LE
+- 6 individually addressable 8x8 or 16x16 LED matrices like WS2812B
+- 5V portable charger or battery
+- USB cable that supports data transfer
+- 3D printer or something that can act as an internal frame
 
 ## Files and Folders
-- `docs/` - Documentation on building the cube
+- `docs/` - Documentation of the cube
+  - `media/` - Pictures and animation demos
   - `print_files/` - STL files for 3D printing parts
   - `README.md` - Instructions for wiring and building the cube
-- `src/` - Contains the code and libraries to copy into the CircuitPython drive
-  - `animations/` - Stores animation object files
+- `src/` - Contains all files to copy into the CircuitPython drive
+  - `animations/` - Stores animation files
   - `lib/` - Stores dependencies
 
 ## Setup Guide
@@ -45,12 +46,12 @@ The type and dimension of the LED panels are relatively flexible, depending on e
 - Refer to [docs/README.md](docs/README.md)
 
 **2. Software Setup**
-1. Install CircuitPython on ESP32
-2. Clone the repository on your computer:  
+1. Connect micro controller to computer with the USB data transfer cable
+2. Install CircuitPython on the micro controller
+3. Clone the repository on your computer:  
    `git clone https://github.com/yourusername/led-cube-project.git`
-3. Connect micro controller to computer with the USB-C transfer cable
 4. Copy the files and folders in `src/` into the CircuitPython root folder
-5. Declare the width of the cube in `code.py`
+5. Declare the pins and width of the cube in `code.py`
 
 **3. Bluetooth Connection**
 1. Install a serial Bluetooth terminal app (sends string bytes over BLE with the UART protocol):
